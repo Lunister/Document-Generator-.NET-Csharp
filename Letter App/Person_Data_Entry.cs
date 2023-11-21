@@ -28,7 +28,7 @@ namespace Letter_App
 
         }
 
-        public Person_Data_Entry(List<Person> persons, Template t, int i , int numberofPeople)
+        public Person_Data_Entry(List<Person> persons, Template t, int i, int numberofPeople)
         {
             InitializeComponent();
 
@@ -44,8 +44,8 @@ namespace Letter_App
             this.numberofPeople = numberofPeople;
             this.persons = persons;
         }
-        
-        public Person_Data_Entry(List<Person> persons, int i , int numberofPeople)
+
+        public Person_Data_Entry(List<Person> persons, int i, int numberofPeople)
         {
             InitializeComponent();
 
@@ -67,7 +67,7 @@ namespace Letter_App
 
         private void Person_Data_Entry_Load(object sender, EventArgs e)
         {
-            if(persons.Count != 0)
+            if (persons.Count != 0)
             {
                 textBox1.Text = persons.Last().Name;
                 textBox2.Text = persons.Last().SurName;
@@ -148,17 +148,17 @@ namespace Letter_App
 
             persons.Add(newPerson);
 
-            if(currentPerson == numberofPeople)
+            if (currentPerson == numberofPeople)
             {
-                PersonDataResults personDataResults = new PersonDataResults(persons , template , numberofPeople);
-                personDataResults.StartPosition = FormStartPosition.CenterParent;
+                PersonDataResults personDataResults = new PersonDataResults(persons, template, numberofPeople);
+                personDataResults.StartPosition = FormStartPosition.CenterScreen;
                 personDataResults.Show();
                 this.Close();
             }
             else
             {
-                Person_Data_Entry person_Data_Entry = new Person_Data_Entry(persons , template , currentPerson+1 , numberofPeople);
-                person_Data_Entry.StartPosition = FormStartPosition.CenterParent;
+                Person_Data_Entry person_Data_Entry = new Person_Data_Entry(persons, template, currentPerson + 1, numberofPeople);
+                person_Data_Entry.StartPosition = FormStartPosition.CenterScreen;
                 person_Data_Entry.Show();
                 this.Close();
             }

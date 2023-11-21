@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Xceed.Document.NET;
 using Xceed.Words.NET;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Letter_App
 {
@@ -56,10 +57,6 @@ namespace Letter_App
 
 
             int template_number = 2;
-
-
-
-             
 
 
             Template temp0 = new Template();
@@ -121,6 +118,142 @@ namespace Letter_App
 
 
 
+            Template temp2 = new Template();
+            temp2.Name = "Proces Verbal De Selectie";
+            temp2.Content = @"**{0}**
+
+**{1} {2}**
+
+                                                **PROCES VERBAL DE SELECȚIE**
+
+                                                               **NR.  din data de** 
+
+
+   Azi data de mai sus, {3}, în calitate de administrator am organizat selecția de personal în vederea ocupării funcției vacante de:
+
+    - **„{4} ” cod COR {5};**
+
+   Selecția s-a realizat cu respectarea prevederilor Legii nr.76/2002 privind sistemul asigurărilor pentru șomaj și stimularea ocupării forței de muncă și a Ordonanței Guvernului nr.25/2014 privind încadrarea în muncă și detașarea străinilor pe teritoriul României, cu modificările și completările ulterioare, după cum urmează:
+
+    -    La data de {6} societatea noastră a depus la AJOFM {7} și pe portalul EURES, documentația necesară în vederea îndeplinirii obligației privind comunicarea locurilor de muncă vacante, conform adeverinței nr. **{8}** eliberată de AJOFM {9} la data de **{10};**
+    -   Anunțul de angajare în muncă a fost publicat prin mijloace de informare în masă din România, respectiv pe site-ul publi24.ro.
+
+   În urma publicării anunțului privind posturile vacante și-a manifestat intenția de a participa la interviu următoarea persoană:
+
+    • **{11}**, cetățenie {12}, ns. {13}, în {14}, identificat cu pașaport nr. {15}, val. {16} și permis de ședere nr. {17}, val. {18}.
+
+   Selecția s-a efectuat pe bază de C.V.-uri și interviu on-line.
+
+   S-a verificat dacă solicitantul respectă cerințele societății de ocupare a posturilor și cerințele legislației în vigoare.
+
+   În urma interviului s-a constatat faptul că persoana menționată  mai sus îndeplinește condițiile de pregătire profesională și experiență în activitate, prevăzute de legislația în vigoare pentru ocuparea locurilor de muncă vacante, motiv pentru care a  fost selectată  pentru încadrarea în muncă pe funcția de: **„{19} ” cod COR {20}**, sub rezerva obținerii avizului de angajare în muncă, conform prevederilor Ordonanței Guvernului nr.25/2014 privind încadrarea în muncă și detașarea străinilor pe teritoriul României, cu modificările și completările ulterioare.
+
+   La încheierea interviului, solicitantului i s-a transmis online oferta fermă de angajare, pe care o anexăm.
+                                                                                        Administrator,";
+            templateArray.Add(temp2);
+
+
+            Template temp3 = new Template();
+            temp3.Name = "Oferta ferma de angajare";
+            temp3.Content = @"
+*****
+{0}
+Nr. ONRC: {1}
+CUI: {2}
+Adresa: {3}	{25}
+Nr. ONRC: {26}
+CUI: {27}
+Address: {28}
+*****
+*****
+  Subscrisa, {4}, cu sediul în {5}, având numărul de înmatriculare la ONRC {6}, CUI: {7}, reprezentată de doamna {8}, având calitatea de administrator, identificată cu pașaport, seria EJ, nr. {8}, emis in data de {9}, conform prevederilor art. 17, alin. 1 din Codul Muncii, lansează următoarea:
+
+
+Ofertă de angajare
+nr. 3  / 04.10.2023
+
+
+  În atenția domnului {10} {11}, născut la data de {12}, în {13}, posesor al pașaportului  nr. {14}, eliberat de autoritățile din {15} valabil până la data de {16}, privind angajarea în cadrul societății, în următoarele condiții:
+
+•	Prin prezenta vă informăm că ați fost selectat pentru ocuparea postului de: ”{17}”, cod COR {18}.
+•	Locul desfășurării activității: la punctul de lucru al societății din mun. {19};
+•	Nivelul postului: de execuție;
+•	Obiectivele postului:      .
+•	Atribuțiile postului și criteriile de evaluare sunt prezentate în fișa postului;
+•	Data la care începe activitatea: după sosirea în România și după îndeplinirea tuturor formalităților legale;
+•	Durata contractului:    nedeterminată;
+•	Durata concediului de odihnă este de 21 zile lucrătoare;
+•	Durata timpului de muncă: 8 ore/zi, 40 de ore/săptămână;
+•	Programul de lucru: în acord, conform contractului individual de muncă;
+•	Disponibilitate pentru program prelungit de muncă, conform legii;
+•	Ore suplimentare plătite, zile libere plătite, conform legii, timp de odihnă corespunzător;
+•	Salarizare: salariu de bază {20} lei brut/lună; la care se adaugă prime și bonusuri în funcție de performanță;
+•	Perioada de probă  este de  90 zile;
+•	Alte beneficii: cazare acordată pe toată perioada contractului, cu utilități incluse. Cazarea se va face la următoarea adresă: {21}
+•	Perioada de preaviz în cazul demisiei este de 15 zile lucrătoare, iar în cazul concedierii perioada este de 20 zile lucrătoare, cu excepția concedierii în perioada de probă când nu este nevoie de preaviz.
+•	Data de la care contractul de muncă își va produce efectele: data de semnare a contractului individual de muncă și după primirea unui exemplar.
+•	Activitatea se desfasoara in conformitate cu prevederile Legii 31/1991 cu modificarile si completarile ulterioare;
+•	Securitatea muncii: se asigură toate condițiile prevăzute în Regulamentul de Ordine Interioară al Societății.
+  
+      
+         
+
+                                                                                      
+{22}
+Ștampila Societății și Semnătura,
+Reprezentant Legal/
+Stamp Company and Signature,
+Legal Representative
+
+
+
+
+
+Nume și prenume candidat/ 
+Name and Surname candidate:
+{23} {24}
+Semnătura/ Signature,
+*****
+*****
+{25}
+Nr. ONRC: {26}
+CUI: {27}
+Address: {28}
+*****
+*****
+	The Undersigned {29}, based in {30}, having the registration number at ONRC {31}, CUI: {32}, represented by {33}, having the position of administrator, identified by passport, Serie EJ, No. {34}, issued on {35}, according to the provisions of article 17 of the Labor Code, launches the following:
+
+Employment offer
+no.  3  / 04.10.2023
+
+
+In the attention of {36} {37}, born on {38}, in {39} holder of the passport number {40}, issued by the {41} authorities valid until {42} resident in Romania, employment within the Company, in the following conditions:
+
+
+•	We hereby inform you that you have been selected for the position of: “{43}”, COR code  {44};
+•	Place of work: at the company’s workstation in: {45}; 
+•	Job level: execution.
+•	Job objectives:   .
+•	Job attributions and evaluation criteria are presented in the job description.
+•	Date on which the activity begins: after arrival in Romania and after completing all legal formalities.
+•	Contract duration: unlimited.
+•	Duration of the rest leave: it is 21 working days.
+•	The duration of the working time is: 8 hours / day, 40 hours / week.
+•	Work schedule: in agreement, according to the individual employment contract;
+•	Availability for extended work schedule, according to the law;
+•	Overtime paid, paid days off, according to the law, appropriate rest time;
+•	Salary: basic salary {46} lei gross / month; to which are added bonuses and performance bonuses;
+•	Trial period: 90 days.
+•	Other benefits: accommodation granted for the entire duration of the contract, with utilities included. Accommodation will be at the address: {47};
+•	The notice period in case of resignation is 15 working days, and in case of dismissal the period is 20 working days, except for dismissal during the probationary period when no notice is required.
+•	The date from which the contract will take effect: the date of signing the individual employment contract and after receiving a copy.
+•	The activity is carried out in accordance with the provisions of Law 31/1991 with subsequent amendments and completions;
+•	Occupational safety: all the conditions in the Internal Regulations of the Company are ensured.
+*****
+";
+
+            templateArray.Add(temp3);
+
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 // Access the checkbox cell in the "SelectColumn" column
@@ -129,9 +262,6 @@ namespace Letter_App
                 // Set the value of the checkbox cell to true
                 checkBox.Value = true;
             }
-
-
-
 
 
             for (int i = 0; i < templateArray.Count; i++)
@@ -174,30 +304,40 @@ namespace Letter_App
 
 
                 string selectedFolder = folderDialog.SelectedPath;
-                //if(!checkBox1.Checked)
-                //{
 
-                    foreach (Person person in selectedPersons)
+                foreach (Person person in selectedPersons)
+                {
+                    string savePath = System.IO.Path.Combine(selectedFolder, (person.Name + ".docx"));
+
+                    string filecontent;
+
+                    switch (comboBox1.SelectedItem)
                     {
-                        string savePath = System.IO.Path.Combine(selectedFolder, (person.Name + ".docx"));
+                        case "Scrisoare de garantie pt ambasada":
+                            filecontent = string.Format(this.templateArray[1].Content, person.CompanyName, person.CUI, person.ONRC, person.CompanyName, person.FirmAddress, person.ONRC, person.CUI, person.RepresentsByName + " " + person.RepresentsBySurname, person.Name, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.AccomodationAddress, person.RepresentsByName + " " + person.RepresentsBySurname);
+                            break;
+                        case "Acord Angajator":
+                            filecontent = string.Format(this.templateArray[0].Content, person.CompanyName, person.CUI, person.ONRC, person.FirmAddress, person.CompanyName, person.ONRC, person.CUI, person.FirmAddress, person.RepresentsByName + " " + person.RepresentsBySurname, person.Name + " " + person.SurName, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.RepresentsByName + " " + person.RepresentsBySurname);
+                            break;
+                        case "Proces Verbal De Selectie":
+                            filecontent = string.Format(this.templateArray[2].Content, person.CompanyName, person.Name , person.SurName, person.RepresentsByName + " " + person.RepresentsBySurname, person.Profession, person.CORNumber, person.AJOFMDate, person.AJOFMCity, person.NumberOfAJOFMPaper, person.AJOFMCity, person.DateofAJOFMPaper, person.Name + " " + person.SurName, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.ResidentPermitNo, person.RPValidUntil, person.Profession, person.CORNumber);
+                            break;
+                        case "Oferta ferma de angajare":
+                            filecontent = string.Format(this.templateArray[3].Content , person.CompanyName , person.ONRC , person.CUI , person.FirmAddress , person.CompanyName , person.FirmAddress , person.ONRC , person.CUI , person.RepresentsByName + " " + person.RepresentsBySurname , person.PassportNo , person.PassportValidUntil , person.Name , person.SurName , person.BornAt , person.Citizenship , person.PassportNo , person.Citizenship , person.PassportValidUntil , person.Profession , person.CORNumber , person.PlacetoWork , person.Salary , person.AccomodationAddress , person.CompanyName , person.Name , person.SurName , person.CompanyName, person.ONRC, person.CUI, person.FirmAddress, person.CompanyName, person.FirmAddress, person.ONRC, person.CUI, person.RepresentsByName + " " + person.RepresentsBySurname, person.PassportNo, person.PassportValidUntil, person.Name, person.SurName, person.BornAt, person.Citizenship, person.PassportNo, person.Citizenship, person.PassportValidUntil, person.Profession, person.CORNumber, person.PlacetoWork, person.Salary, person.AccomodationAddress);
+                            break;
+                        default:
+                            MessageBox.Show("Please select a template.");
+                            return;
+                    }
 
-                        string filecontent;
+                    using (DocX document = DocX.Create(savePath))
+                    {
+                        // Set the default font of the entire document to Times New Roman
+                        document.SetDefaultFont(new Xceed.Document.NET.Font("Times New Roman") , 12);
 
-                        switch (comboBox1.SelectedValue)
+                        if(comboBox1.SelectedItem != "Oferta ferma de angajare")
                         {
-                            case "Scrisoare de garantie pt ambasada":
-                                filecontent = string.Format(this.templateArray[1].Content, person.CompanyName, person.CUI, person.ONRC, person.CompanyName, person.FirmAddress, person.ONRC, person.CUI, person.RepresentsByName + " " + person.RepresentsBySurname, person.Name, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.AccomodationAddress, person.RepresentsByName + " " + person.RepresentsBySurname);
-                                break;
-                            case "Acord Angajator":
-                                filecontent = string.Format(this.templateArray[0].Content, person.CompanyName, person.CUI, person.ONRC, person.FirmAddress, person.CompanyName, person.ONRC, person.CUI, person.FirmAddress, person.RepresentsByName + " " + person.RepresentsBySurname, person.Name + " " + person.SurName, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.RepresentsByName + " " + person.RepresentsBySurname);
-                                break;
-                            default:
-                                filecontent = string.Format(this.templateArray[0].Content, person.CompanyName, person.CUI, person.ONRC, person.FirmAddress, person.CompanyName, person.ONRC, person.CUI, person.FirmAddress, person.RepresentsByName + " " + person.RepresentsBySurname, person.Name + " " + person.SurName, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.RepresentsByName + " " + person.RepresentsBySurname);
-                                break;
-                        }
 
-                        using (DocX document = DocX.Create(savePath))
-                        {
                             var paragraph = document.InsertParagraph();
                             string pattern = @"\*\*(.*?)\*\*";
                             int startIndex = 0;
@@ -221,40 +361,82 @@ namespace Letter_App
                                 paragraph.Append(filecontent.Substring(startIndex));
                             }
 
-                            // Save the Word document
-                            document.Save();
-                            count++;
                         }
+                        else
+                        {
+                            var paragraph = document.InsertParagraph();
+                            string pattern = @"\*\*\*\*\*(.*?)\*\*\*\*\*";
+                            int startIndex = 0;
+                            List<string> content = new List<string>();
+
+                            // Use a regular expression to find matches
+                            foreach (Match match in Regex.Matches(fileContent, pattern))
+                            {
+                                // Append the text before the match
+                                paragraph.Append(fileContent.Substring(startIndex, match.Index - startIndex));
+
+                                // Append the matched text with bold formatting
+                                content.Add(match.Groups[1].Value);
+
+                                // Update the starting index for the next iteration
+                                startIndex = match.Index + match.Length;
+                            }
+
+                            pattern = @"\*\*(.*?)\*\*";
+                            int i = 0, j = 0;
+                            var table = document.InsertTable(2, 2);
+                            table.Design = TableDesign.DarkListAccent4;
+                            table.AutoFit = AutoFit.Window;
+
+                            foreach (string cont1 in content)
+                            {
+                                startIndex = 0;
+
+                                foreach (Match match in Regex.Matches(cont1, pattern))
+                                {
+                                    // Append the text before the match
+                                    paragraph.Append(cont1.Substring(startIndex, match.Index - startIndex));
+
+                                    // Append the matched text with bold formatting
+                                    paragraph.Append(match.Groups[1].Value).Bold();
+
+                                    // Update the starting index for the next iteration
+                                    startIndex = match.Index + match.Length;
+                                }
+
+                                // Append any remaining text
+                                if (startIndex < cont1.Length)
+                                {
+                                    paragraph.Append(cont1.Substring(startIndex));
+                                }
+
+                                if (i < 2)
+                                {
+                                    table.Rows[i].Paragraphs[j].Append(cont1 + "\n");
+                                    i++;
+                                }
+                                else
+                                {
+                                    table.Rows[i].Paragraphs[j].Append(cont1 + "\n");
+                                    j++;
+                                }
+                            }
+
+                            document.InsertTable(table);
 
 
+                        }
+                        // Save the Word document
+                        document.Save();
+                        count++;
                     }
-                    MessageBox.Show($"Word file saved successfully.\n\nTotal Files Saved: {count}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //}
-                //else
-                //{
-                //    string savePath = System.IO.Path.Combine(selectedFolder, (persons.First().Name + " " + comboBox1.SelectedValue + ".docx"));
 
-                //    string filecontent;
 
-                //    string concatenatedNames = string.Empty;
-                //    foreach (var person in persons)
-                //    {
-                //        concatenatedNames += person.Name + " " + person.SurName + ", ";
-                //    }
 
-                //    switch (comboBox1.SelectedValue)
-                //    {
-                //        case "Scrisoare de garantie pt ambasada":
-                //            filecontent = string.Format(this.templateArray[1].Content, persons.First().CompanyName , persons.First().CUI, persons.First().ONRC, persons.First().CompanyName, persons.First().FirmAddress, persons.First().ONRC, persons.First().CUI, persons.First().RepresentsByName + " " + persons.First().RepresentsBySurname, concatenatedNames, persons.First().Citizenship, persons.First().BornAt, persons.First().Citizenship, persons.First().PassportNo, persons.First().PassportValidUntil, persons.First().AccomodationAddress, persons.First().RepresentsByName + " " + persons.First().RepresentsBySurname);
-                //            break;
-                //        case "Acord Angajator":
-                //            filecontent = string.Format(this.templateArray[0].Content, persons.First().CompanyName, persons.First().CUI, persons.First().ONRC, persons.First().FirmAddress, persons.First().CompanyName, persons.First().ONRC, persons.First().CUI, persons.First().FirmAddress, persons.First().RepresentsByName + " " + persons.First().RepresentsBySurname, concatenatedNames , persons.First().Citizenship, persons.First().BornAt, persons.First().Citizenship, persons.First().PassportNo, persons.First().PassportValidUntil, persons.First().RepresentsByName + " " + persons.First().RepresentsBySurname);
-                //            break;
-                //        default:
-                //            filecontent = string.Format(this.templateArray[0].Content, persons.First().CompanyName, persons.First().CUI, persons.First().ONRC, persons.First().FirmAddress, persons.First().CompanyName, persons.First().ONRC, persons.First().CUI, persons.First().FirmAddress, persons.First().RepresentsByName + " " + persons.First().RepresentsBySurname, concatenatedNames , persons.First().Citizenship, persons.First().BornAt, persons.First().Citizenship, persons.First().PassportNo, persons.First().PassportValidUntil, persons.First().RepresentsByName + " " + persons.First().RepresentsBySurname);
-                //            break;
-                //    }
-                //}
+
+                }
+                MessageBox.Show($"Word file saved successfully.\n\nTotal Files Saved: {count}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -281,36 +463,36 @@ namespace Letter_App
                 string selectedFolder = folderDialog.SelectedPath;
                 //if (!checkBox1.Checked)
                 //{
-                    foreach (Person person in selectedPersons)
+                foreach (Person person in selectedPersons)
+                {
+
+                    string savePath = Path.Combine(selectedFolder, person.Name + ".pdf");
+                    string filecontent;
+                    switch (comboBox1.SelectedItem)
                     {
-                        
-                        string savePath = Path.Combine(selectedFolder, person.Name + ".pdf");
-                        string filecontent;
-                        switch (comboBox1.SelectedValue)
-                        {
-                            case "Scrisoare de garantie pt ambasada":
-                                filecontent = string.Format(this.templateArray[1].Content, person.CompanyName, person.CUI, person.ONRC, person.CompanyName, person.FirmAddress, person.ONRC, person.CUI, person.RepresentsByName + " " + person.RepresentsBySurname, person.Name, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.AccomodationAddress, person.RepresentsByName + " " + person.RepresentsBySurname);
-                                break;
-                            case "Acord Angajator":
-                                filecontent = string.Format(this.templateArray[0].Content, person.CompanyName, person.CUI, person.ONRC, person.FirmAddress, person.CompanyName, person.ONRC, person.CUI, person.FirmAddress, person.RepresentsByName + " " + person.RepresentsBySurname, person.Name + " " + person.SurName, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.RepresentsByName + " " + person.RepresentsBySurname);
-                                break;
-                            default:
-                                filecontent = string.Format(this.templateArray[0].Content, person.CompanyName, person.CUI, person.ONRC, person.FirmAddress, person.CompanyName, person.ONRC, person.CUI, person.FirmAddress, person.RepresentsByName + " " + person.RepresentsBySurname, person.Name + " " + person.SurName, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.RepresentsByName + " " + person.RepresentsBySurname);
-                                break;
-                        }
-                        iTextSharp.text.Document document = new iTextSharp.text.Document();
-                        // Create a PdfWriter and add the document to it
-                        using (FileStream fs = new FileStream(savePath, FileMode.Create))
-                        {
-                            PdfWriter writer = PdfWriter.GetInstance(document, fs);
-                            document.Open();
-                            iTextSharp.text.Paragraph paragraph = new iTextSharp.text.Paragraph(filecontent);
-                            document.Add(paragraph);
-                            document.Close();
-                            count++;
-                        }
+                        case "Scrisoare de garantie pt ambasada":
+                            filecontent = string.Format(this.templateArray[1].Content, person.CompanyName, person.CUI, person.ONRC, person.CompanyName, person.FirmAddress, person.ONRC, person.CUI, person.RepresentsByName + " " + person.RepresentsBySurname, person.Name, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.AccomodationAddress, person.RepresentsByName + " " + person.RepresentsBySurname);
+                            break;
+                        case "Acord Angajator":
+                            filecontent = string.Format(this.templateArray[0].Content, person.CompanyName, person.CUI, person.ONRC, person.FirmAddress, person.CompanyName, person.ONRC, person.CUI, person.FirmAddress, person.RepresentsByName + " " + person.RepresentsBySurname, person.Name + " " + person.SurName, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.RepresentsByName + " " + person.RepresentsBySurname);
+                            break;
+                        default:
+                            filecontent = string.Format(this.templateArray[0].Content, person.CompanyName, person.CUI, person.ONRC, person.FirmAddress, person.CompanyName, person.ONRC, person.CUI, person.FirmAddress, person.RepresentsByName + " " + person.RepresentsBySurname, person.Name + " " + person.SurName, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.RepresentsByName + " " + person.RepresentsBySurname);
+                            break;
                     }
-                    MessageBox.Show($"PDF file saved successfully.\n\nTotal Files Saved: {count}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    iTextSharp.text.Document document = new iTextSharp.text.Document();
+                    // Create a PdfWriter and add the document to it
+                    using (FileStream fs = new FileStream(savePath, FileMode.Create))
+                    {
+                        PdfWriter writer = PdfWriter.GetInstance(document, fs);
+                        document.Open();
+                        iTextSharp.text.Paragraph paragraph = new iTextSharp.text.Paragraph(filecontent);
+                        document.Add(paragraph);
+                        document.Close();
+                        count++;
+                    }
+                }
+                MessageBox.Show($"PDF file saved successfully.\n\nTotal Files Saved: {count}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //}
                 //else
                 //{
@@ -353,7 +535,7 @@ namespace Letter_App
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBox2.Checked)
+            if (checkBox2.Checked)
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
@@ -376,5 +558,6 @@ namespace Letter_App
                 }
             }
         }
+
     }
 }

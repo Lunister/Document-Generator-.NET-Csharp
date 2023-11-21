@@ -37,32 +37,22 @@ namespace Letter_App
         {
             if (int.TryParse(textBox1.Text, out int numberOfPeople))
             {
-                //Template_Selection template_Selection = new Template_Selection(numberOfPeople);
-                //template_Selection.StartPosition = FormStartPosition.CenterParent;
-                //this.Close();
-                //template_Selection.ShowDialog();
-
-
-                //Button button = (Button)sender;
-
-                //Template selectedTemplate = (Template)button.Tag;
-
-
                 List<Person> persons = new List<Person>();
 
                 Person_Data_Entry person_Data_Entry = new Person_Data_Entry(persons, 1, numberOfPeople);
 
-                person_Data_Entry.StartPosition = FormStartPosition.CenterParent;
+                // Set the StartPosition to CenterScreen
+                person_Data_Entry.StartPosition = FormStartPosition.CenterScreen;
 
                 person_Data_Entry.Show();
 
                 this.Close();
-
             }
             else
             {
                 MessageBox.Show("Invalid input. Please enter a valid number.");
             }
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
