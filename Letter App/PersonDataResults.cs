@@ -1,19 +1,10 @@
-﻿using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.text.pdf.qrcode;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using iTextSharp.text.pdf;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Xceed.Document.NET;
 using Xceed.Words.NET;
-using static System.Net.Mime.MediaTypeNames;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Letter_App
 {
@@ -61,7 +52,6 @@ namespace Letter_App
 
             Template temp0 = new Template();
             temp0.Name = "Acord Angajator";
-            //temp0.Content = "<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><span style='font-family:\"Palatino Linotype\",serif;'>Denumire angajator:<strong>&nbsp;</strong></span><span style='font-family:\"Palatino Linotype\",serif;'><strong>{0}&nbsp;</strong></span><span style='font-family:\"Palatino Linotype\",serif;'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><span style='font-family:\"Palatino Linotype\",serif;'>Cod fiscal:&nbsp;</span><span style='font-family:\"Palatino Linotype\",serif;'><strong>{1}</strong></span><strong><span style='font-family:\"Palatino Linotype\",serif;'>&nbsp;</span></strong></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><span style='font-family:\"Palatino Linotype\",serif;'>Nr. R.C.:&nbsp;</span><span style='font-family:\"Palatino Linotype\",serif;'><strong>{2}</strong></span></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><span style='font-family:\"Palatino Linotype\",serif;'>Adresa:&nbsp;</span><strong><span style='font-family:\"Palatino Linotype\",serif;'>{3}</span></strong></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:\"Calibri\",sans-serif;'><strong><span style='font-size:16px;font-family:\"Palatino Linotype\",serif;'>Nr: &nbsp; &nbsp; &nbsp;/&nbsp;</span></strong></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:\"Calibri\",sans-serif;'><span style='font-size:16px;font-family:\"Palatino Linotype\",serif;'>&nbsp;</span></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:\"Calibri\",sans-serif;'><span style='font-size:16px;font-family:\"Palatino Linotype\",serif;'>&nbsp;</span></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:center;'><strong><span style='font-size:16px;font-family:\"Palatino Linotype\",serif;'>ACORD PENTRU SCHIMBARE ANGAJATOR CONFORM OUG NR. 143/28.10.2022</span></strong></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:normal;font-size:15px;font-family:\"Calibri\",sans-serif;'><span style='font-size:16px;font-family:\"Palatino Linotype\",serif;'>&nbsp;</span></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:150%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><span style='font-size:16px;line-height:150%;font-family:\"Palatino Linotype\",serif;'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Subscrisa&nbsp;</span><span style='font-family:\"Palatino Linotype\",serif;'><strong>{4}</strong></span><span style='font-family:\"Palatino Linotype\",serif;'>, număr de ordine &icirc;n Registrul Comerțului {5}, &nbsp;CUI: {6}, cu sediul &icirc;n&nbsp;</span><span style='font-family:\"Palatino Linotype\",serif;'>{7}</span><span style='font-family:\"Palatino Linotype\",serif;'>&nbsp;</span><span style='font-family:\"Palatino Linotype\",serif;'>reprezentată legal de <strong>{8}</strong>,&nbsp;</span><span style='font-size:16px;line-height:150%;font-family:\"Palatino Linotype\",serif;'>&icirc;n calitate de administrator si fost angajator al cetățeanului:</span></p>\r\n<div style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;'>\r\n    <ul style=\"margin-bottom:0cm;list-style-type: undefined;margin-left:44px;\">\r\n        <li style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;'><strong><span style='font-family:\"Palatino Linotype\",serif;'>{9},&nbsp;</span></strong><span style='font-family:\"Palatino Linotype\",serif;'>cetățenie {10}, ns. {11}, &icirc;n {12}, identificat cu pașaportul nr. {13}, val. {14};</span></li>\r\n    </ul>\r\n</div>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:150%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><span style='font-size:16px;line-height:150%;font-family:\"Palatino Linotype\",serif;'>&Icirc;mi exprim prin prezenta acordul in scris de a se angaja la un alt angajator.&nbsp;</span></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:150%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><span style='font-size:16px;line-height:150%;font-family:\"Palatino Linotype\",serif;'>&nbsp;</span></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:150%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><span style='font-size:16px;line-height:150%;font-family:\"Palatino Linotype\",serif;'>&nbsp;</span></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:150%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><strong><span style='font-size:16px;line-height:150%;font-family:\"Palatino Linotype\",serif;'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Administrator,</span></strong></p>";
             temp0.Content = @"**Denumire angajator:** {0}
 **Cod fiscal:** {1}
 **Nr. R.C.:** {2}
@@ -87,7 +77,6 @@ namespace Letter_App
 
             Template temp1 = new Template();
             temp1.Name = "Scrisoare de garantie pt ambasada";
-            //temp1.Content = "<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><strong><span style='font-family:\"Palatino Linotype\",serif;'>{0}</span></strong></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><strong><span style='font-family:\"Palatino Linotype\",serif;'>CUI: &nbsp;{1}, &nbsp;{2}</span></strong></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;'><strong><span style='font-family:\"Palatino Linotype\",serif;'>Nr. &nbsp; &nbsp; &nbsp; &nbsp;/&nbsp;</span></strong></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;'><span style='font-family:\"Palatino Linotype\",serif;'>&nbsp;</span></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:center;'><strong><span style='font-family:\"Palatino Linotype\",serif;'>SCRISOARE DE GARANȚIE</span></strong></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><strong><span style='font-family:\"Palatino Linotype\",serif;'>&nbsp;</span></strong></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><strong><span style='font-family:\"Palatino Linotype\",serif;'>&nbsp; &nbsp;{3}&nbsp;</span></strong><span style='font-family:\"Palatino Linotype\",serif;'>cu sediul &icirc;n Rom&acirc;nia,&nbsp;</span><span style='font-family:\"Palatino Linotype\",serif;'>mun. {4}</span><span style='font-family:\"Palatino Linotype\",serif;'>, &icirc;nregistrată la registrul comerțului sub numărul<strong>&nbsp;{5}</strong>, cod fiscal <strong>{6},&nbsp;</strong>reprezentată legal prin <strong>{7}&nbsp;</strong>&icirc;n calitate de <strong>administrator,&nbsp;</strong>prin prezenta vă solicităm sprijinul pentru obținerea vizei rom&acirc;ne de lungă ședere &icirc;n scop de muncă, simbol D/AM pentru domnul <strong>{8}</strong>, cetățenie {9}, nascut</span><span style='font-family:\"Palatino Linotype\",serif;'>&nbsp;</span><span style='font-family:\"Palatino Linotype\",serif;'>{10}</span><span style='font-family:\"Palatino Linotype\",serif;'>, &icirc;n Bangladesh, identificat cu pașaport nr. {11}, val. {12};</span></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><span style='font-family:\"Palatino Linotype\",serif;'>Menționăm că obținerea vizei este necesară &icirc;n scopul angajării &icirc;n baza <strong>avizului de muncă nr. eliberat de IGI la data</strong>.</span></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;line-height:115%;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;'><span style='font-family:\"Palatino Linotype\",serif;'>Subscrisa &icirc;și asumă obligația suportării cheltuielilor privind asistența materială, medicală și a celor de executare a masurilor de &icirc;ndepărtare, conform art. 44 alin. (2) lit. b) sau 44^1 alin. (2) lit. b), după caz, din Ordonanța de urgență nr.194/2002 republicată, cu modificările si completările ulterioare. Cazarea v-a fi asigurată<strong>&nbsp;</strong>&icirc;n <strong>&nbsp;{13}.</strong></span></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:252.0pt;line-height:normal;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;text-indent:36.0pt;'><strong><span style='font-family:\"Palatino Linotype\",serif;'>&nbsp;</span></strong></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:252.0pt;line-height:normal;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;text-indent:36.0pt;'><strong><span style='font-family:\"Palatino Linotype\",serif;'>&nbsp;</span></strong></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:252.0pt;line-height:normal;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;text-indent:36.0pt;'><strong><span style='font-family:\"Palatino Linotype\",serif;'>Administrator,&nbsp;</span></strong></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:252.0pt;line-height:normal;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;text-indent:36.0pt;'><strong><span style='font-family:\"Palatino Linotype\",serif;'>&nbsp;</span></strong></p>\r\n<p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:252.0pt;line-height:normal;font-size:15px;font-family:\"Calibri\",sans-serif;text-align:justify;text-indent:36.0pt;'><strong><span style='font-family:\"Palatino Linotype\",serif;'>{14}</span></strong></p>";
             temp1.Content = @"**{0}**
 **CUI: {1}, {2}**
 **Nr.       /**
@@ -280,6 +269,109 @@ In the attention of {36} {37}, born on {38}, in {39} holder of the passport numb
 
         }
 
+
+
+        private void Button_testing(object sender, EventArgs e)
+        {
+
+            int count = 0;
+
+            List<Person> selectedPersons = new List<Person>();
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                DataGridViewCheckBoxCell checkBox = row.Cells["Select"] as DataGridViewCheckBoxCell;
+                if (checkBox.Value != null && (bool)checkBox.Value)
+                {
+                    // If the checkbox is checked, include this Person object in the selection
+                    Person person = (Person)row.DataBoundItem;
+                    selectedPersons.Add(person);
+                }
+            }
+            string relativePath = "F:\\Side Work\\C# DOTNET Windows Forms\\Letter App\\Letter App\\Letter App\\Templates\\Oferta ferma de angajare  XU JUNXIAO.docx";
+
+            // Ask the user for the destination folder
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            folderDialog.Description = "Select a folder to save the Word files";
+
+            if (folderDialog.ShowDialog() == DialogResult.OK)
+            {
+                string selectedFolder = folderDialog.SelectedPath;
+
+                // Open the Word document outside the loop
+                using (var wordDocument = WordprocessingDocument.Open(relativePath, false))
+                {
+                    foreach (Person person in selectedPersons)
+                    {
+                        // Create a new Word document based on the original template
+                        string savePath = Path.Combine(selectedFolder, $"{person.Name} {person.SurName} ({person.PassportNo}).docx");
+                        File.Copy(relativePath, savePath);
+
+                        // Open the new document for modification
+                        using (var newWordDocument = WordprocessingDocument.Open(savePath, true))
+                        {
+                            // Find and replace the content in the document
+                            var body = newWordDocument.MainDocumentPart.Document.Body;
+                            var paragraphs = body.Descendants<Paragraph>().ToList();
+
+                            // Create a dictionary to map placeholders to corresponding properties
+                            var placeholderValues = new Dictionary<string, string>
+                            {
+                                {"{1}", person.Name},
+                                {"{2}", person.SurName},
+                                {"{3}", person.PassportNo},
+                                {"{3'}", person.PassportValidUntil},
+                                {"{4}", person.BornAt},
+                                {"{5}", person.Citizenship},
+                                {"{5'}", person.ResidentPermitNo},
+                                {"{5''}", person.RPValidUntil},
+                                {"{6}", person.CompanyName},
+                                {"{7}", person.ONRC},
+                                {"{8}", person.CUI},
+                                {"{9}", person.FirmAddress},
+                                {"{10}", person.RepresentsByName},
+                                {"{10'}", person.RepresentsBySurname},
+                                {"{10''}", person.Passport_IDNumber},
+                                {"{10'''}", person.PassportIDValidUntil},
+                                {"{11}", person.Profession},
+                                {"{12}", person.Salary},
+                                {"{13}", person.PlacetoWork},
+                                {"{14}", person.AccomodationAddress},
+                                {"{15}", person.CORNumber},
+                                {"{16}", person.Orgamigram},
+                                {"{17}", person.OccupiedByRomanianCitizen},
+                                {"{18}", person.OccupiedByImmigrationCitizen},
+                                {"{19}", person.JobsVacancies},
+                                {"{20}", person.AJOFMDate},
+                                {"{21}", person.AJOFMCity},
+                                {"{22}", person.NumberOfAJOFMPaper},
+                                {"{23}", person.DateofAJOFMPaper},
+                            };
+                                
+                            foreach (var paragraph in paragraphs)
+                            {
+                                foreach (var text in paragraph.Descendants<Text>())
+                                {
+                                    // Replace placeholders with specific details
+                                    foreach (var placeholder in placeholderValues)
+                                    {
+                                        text.Text = text.Text.Replace(placeholder.Key, placeholder.Value);
+                                    }
+                                }
+                            }
+
+                            // Save the changes to the new Word document
+                            newWordDocument.Save();
+                        }
+                    }
+                }
+            }
+
+
+
+
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             int count = 0;
@@ -320,23 +412,24 @@ In the attention of {36} {37}, born on {38}, in {39} holder of the passport numb
                             filecontent = string.Format(this.templateArray[0].Content, person.CompanyName, person.CUI, person.ONRC, person.FirmAddress, person.CompanyName, person.ONRC, person.CUI, person.FirmAddress, person.RepresentsByName + " " + person.RepresentsBySurname, person.Name + " " + person.SurName, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.RepresentsByName + " " + person.RepresentsBySurname);
                             break;
                         case "Proces Verbal De Selectie":
-                            filecontent = string.Format(this.templateArray[2].Content, person.CompanyName, person.Name , person.SurName, person.RepresentsByName + " " + person.RepresentsBySurname, person.Profession, person.CORNumber, person.AJOFMDate, person.AJOFMCity, person.NumberOfAJOFMPaper, person.AJOFMCity, person.DateofAJOFMPaper, person.Name + " " + person.SurName, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.ResidentPermitNo, person.RPValidUntil, person.Profession, person.CORNumber);
+                            filecontent = string.Format(this.templateArray[2].Content, person.CompanyName, person.Name, person.SurName, person.RepresentsByName + " " + person.RepresentsBySurname, person.Profession, person.CORNumber, person.AJOFMDate, person.AJOFMCity, person.NumberOfAJOFMPaper, person.AJOFMCity, person.DateofAJOFMPaper, person.Name + " " + person.SurName, person.Citizenship, person.BornAt, person.Citizenship, person.PassportNo, person.PassportValidUntil, person.ResidentPermitNo, person.RPValidUntil, person.Profession, person.CORNumber);
                             break;
                         case "Oferta ferma de angajare":
-                            filecontent = string.Format(this.templateArray[3].Content , person.CompanyName , person.ONRC , person.CUI , person.FirmAddress , person.CompanyName , person.FirmAddress , person.ONRC , person.CUI , person.RepresentsByName + " " + person.RepresentsBySurname , person.PassportNo , person.PassportValidUntil , person.Name , person.SurName , person.BornAt , person.Citizenship , person.PassportNo , person.Citizenship , person.PassportValidUntil , person.Profession , person.CORNumber , person.PlacetoWork , person.Salary , person.AccomodationAddress , person.CompanyName , person.Name , person.SurName , person.CompanyName, person.ONRC, person.CUI, person.FirmAddress, person.CompanyName, person.FirmAddress, person.ONRC, person.CUI, person.RepresentsByName + " " + person.RepresentsBySurname, person.PassportNo, person.PassportValidUntil, person.Name, person.SurName, person.BornAt, person.Citizenship, person.PassportNo, person.Citizenship, person.PassportValidUntil, person.Profession, person.CORNumber, person.PlacetoWork, person.Salary, person.AccomodationAddress);
+                            filecontent = string.Format(this.templateArray[3].Content, person.CompanyName, person.ONRC, person.CUI, person.FirmAddress, person.CompanyName, person.FirmAddress, person.ONRC, person.CUI, person.RepresentsByName + " " + person.RepresentsBySurname, person.PassportNo, person.PassportValidUntil, person.Name, person.SurName, person.BornAt, person.Citizenship, person.PassportNo, person.Citizenship, person.PassportValidUntil, person.Profession, person.CORNumber, person.PlacetoWork, person.Salary, person.AccomodationAddress, person.CompanyName, person.Name, person.SurName, person.CompanyName, person.ONRC, person.CUI, person.FirmAddress, person.CompanyName, person.FirmAddress, person.ONRC, person.CUI, person.RepresentsByName + " " + person.RepresentsBySurname, person.PassportNo, person.PassportValidUntil, person.Name, person.SurName, person.BornAt, person.Citizenship, person.PassportNo, person.Citizenship, person.PassportValidUntil, person.Profession, person.CORNumber, person.PlacetoWork, person.Salary, person.AccomodationAddress);
                             break;
+                        case "":
                         default:
                             MessageBox.Show("Please select a template.");
                             return;
                     }
 
-                    using (DocX document = DocX.Create(savePath))
+                    if (comboBox1.SelectedItem != "Oferta ferma de angajare")
                     {
-                        // Set the default font of the entire document to Times New Roman
-                        document.SetDefaultFont(new Xceed.Document.NET.Font("Times New Roman") , 12);
-
-                        if(comboBox1.SelectedItem != "Oferta ferma de angajare")
+                        using (DocX document = DocX.Create(savePath))
                         {
+                            // Set the default font of the entire document to Times New Roman
+                            document.SetDefaultFont(new Xceed.Document.NET.Font("Times New Roman"), 12);
+
 
                             var paragraph = document.InsertParagraph();
                             string pattern = @"\*\*(.*?)\*\*";
@@ -361,82 +454,25 @@ In the attention of {36} {37}, born on {38}, in {39} holder of the passport numb
                                 paragraph.Append(filecontent.Substring(startIndex));
                             }
 
+                            document.Save();
+                            count++;
                         }
-                        else
-                        {
-                            var paragraph = document.InsertParagraph();
-                            string pattern = @"\*\*\*\*\*(.*?)\*\*\*\*\*";
-                            int startIndex = 0;
-                            List<string> content = new List<string>();
 
-                            // Use a regular expression to find matches
-                            foreach (Match match in Regex.Matches(fileContent, pattern))
-                            {
-                                // Append the text before the match
-                                paragraph.Append(fileContent.Substring(startIndex, match.Index - startIndex));
-
-                                // Append the matched text with bold formatting
-                                content.Add(match.Groups[1].Value);
-
-                                // Update the starting index for the next iteration
-                                startIndex = match.Index + match.Length;
-                            }
-
-                            pattern = @"\*\*(.*?)\*\*";
-                            int i = 0, j = 0;
-                            var table = document.InsertTable(2, 2);
-                            table.Design = TableDesign.DarkListAccent4;
-                            table.AutoFit = AutoFit.Window;
-
-                            foreach (string cont1 in content)
-                            {
-                                startIndex = 0;
-
-                                foreach (Match match in Regex.Matches(cont1, pattern))
-                                {
-                                    // Append the text before the match
-                                    paragraph.Append(cont1.Substring(startIndex, match.Index - startIndex));
-
-                                    // Append the matched text with bold formatting
-                                    paragraph.Append(match.Groups[1].Value).Bold();
-
-                                    // Update the starting index for the next iteration
-                                    startIndex = match.Index + match.Length;
-                                }
-
-                                // Append any remaining text
-                                if (startIndex < cont1.Length)
-                                {
-                                    paragraph.Append(cont1.Substring(startIndex));
-                                }
-
-                                if (i < 2)
-                                {
-                                    table.Rows[i].Paragraphs[j].Append(cont1 + "\n");
-                                    i++;
-                                }
-                                else
-                                {
-                                    table.Rows[i].Paragraphs[j].Append(cont1 + "\n");
-                                    j++;
-                                }
-                            }
-
-                            document.InsertTable(table);
+                    }
+                    else
+                    {
+                        string relativePath = "F:\\Side Work\\C# DOTNET Windows Forms\\Letter App\\Letter App\\Letter App\\Templates\\Oferta ferma de angajare  XU JUNXIAO.docx";
 
 
-                        }
-                        // Save the Word document
-                        document.Save();
-                        count++;
+
                     }
 
 
 
-
                 }
+
                 MessageBox.Show($"Word file saved successfully.\n\nTotal Files Saved: {count}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -548,7 +584,7 @@ In the attention of {36} {37}, born on {38}, in {39} holder of the passport numb
             }
             else
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                foreach (DataGridViewRow row in dataGridView1.Rows) 
                 {
                     // Access the checkbox cell in the "SelectColumn" column
                     DataGridViewCheckBoxCell checkBox = row.Cells["Select"] as DataGridViewCheckBoxCell;

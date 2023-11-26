@@ -70,7 +70,7 @@ namespace Letter_App
             button3.TabIndex = 7;
             button3.Text = "Export as Word File";
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            button3.Click += Button_testing;
             // 
             // button1
             // 
