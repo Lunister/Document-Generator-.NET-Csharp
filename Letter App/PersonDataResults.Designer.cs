@@ -40,9 +40,10 @@ namespace Letter_App
             button2 = new Button();
             label1 = new Label();
             label3 = new Label();
-            comboBox1 = new ComboBox();
             checkBox1 = new CheckBox();
             checkBox2 = new CheckBox();
+            label2 = new Label();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -122,15 +123,6 @@ namespace Letter_App
             label3.TabIndex = 12;
             label3.Text = "Template:";
             // 
-            // comboBox1
-            // 
-            comboBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(484, 97);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(184, 29);
-            comboBox1.TabIndex = 13;
-            // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
@@ -153,14 +145,36 @@ namespace Letter_App
             checkBox2.UseVisualStyleBackColor = true;
             checkBox2.CheckedChanged += checkBox2_CheckedChanged;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(616, 105);
+            label2.Name = "label2";
+            label2.Size = new Size(48, 21);
+            label2.TabIndex = 16;
+            label2.Text = "None";
+            label2.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(670, 103);
+            button4.Name = "button4";
+            button4.Size = new Size(79, 29);
+            button4.TabIndex = 17;
+            button4.Text = "Select";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
             // PersonDataResults
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1028, 667);
+            Controls.Add(button4);
+            Controls.Add(label2);
             Controls.Add(checkBox2);
             Controls.Add(checkBox1);
-            Controls.Add(comboBox1);
             Controls.Add(label3);
             Controls.Add(label1);
             Controls.Add(button2);
@@ -184,9 +198,10 @@ namespace Letter_App
         private Button button2;
         private Label label1;
         private Label label3;
-        private ComboBox comboBox1;
         private CheckBox checkBox1;
         private DataGridViewCheckBoxColumn Select;
         private CheckBox checkBox2;
+        private Label label2;
+        private Button button4;
     }
 }
