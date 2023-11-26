@@ -67,9 +67,6 @@ namespace Letter_App
 
 
 
-            //---------------------------------DROP DOWM----------------------------------------------------------------
-
-
 
         }
 
@@ -116,11 +113,10 @@ namespace Letter_App
                 // Open the Word document outside the loop
                 using (var wordDocument = WordprocessingDocument.Open(templatepath, false))
                 {
-
-                    foreach (Person person in selectedPersons)
+                    if (checkBox1.Checked)
                     {
                         // Create a new Word document based on the original template
-                        string savePath = Path.Combine(selectedFolder, $"{person.Name} {person.SurName} ({person.PassportNo}).docx");
+                        string savePath = Path.Combine(selectedFolder, $"{templateName} {DateTime.Now} ({selectedPersons.Count} people).docx");
                         File.Copy(templatepath, savePath);
 
                         // Open the new document for modification
@@ -130,38 +126,40 @@ namespace Letter_App
                             var body = newWordDocument.MainDocumentPart.Document.Body;
                             var paragraphs = body.Descendants<Paragraph>().ToList();
 
+                            var person = persons.First();
+
                             var placeholderValues = new Dictionary<string, string>
-                            {
-                                {"{1}", person.Name},
-                                {"{2}", person.SurName},
-                                {"{3}", person.PassportNo},
-                                {"{3'}", person.PassportValidUntil},
-                                {"{4}", person.BornAt},
-                                {"{5}", person.Citizenship},
-                                {"{5'}", person.ResidentPermitNo},
-                                {"{5''}", person.RPValidUntil},
-                                {"{6}", person.CompanyName},
-                                {"{7}", person.ONRC},
-                                {"{8}", person.CUI},
-                                {"{9}", person.FirmAddress},
-                                {"{10}", person.RepresentsByName},
-                                {"{10'}", person.RepresentsBySurname},
-                                {"{10''}", person.Passport_IDNumber},
-                                {"{10'''}", person.PassportIDValidUntil},
-                                {"{11}", person.Profession},
-                                {"{12}", person.Salary},
-                                {"{13}", person.PlacetoWork},
-                                {"{14}", person.AccomodationAddress},
-                                {"{15}", person.CORNumber},
-                                {"{16}", person.Orgamigram},
-                                {"{17}", person.OccupiedByRomanianCitizen},
-                                {"{18}", person.OccupiedByImmigrationCitizen},
-                                {"{19}", person.JobsVacancies},
-                                {"{20}", person.AJOFMDate},
-                                {"{21}", person.AJOFMCity},
-                                {"{22}", person.NumberOfAJOFMPaper},
-                                {"{23}", person.DateofAJOFMPaper},
-                            };
+                                {
+                                    {"{1}", string.Join(" ", persons.Select(pers => $"{pers.Name} {pers.SurName}, "))},
+                                    {"{2}", string.Empty},
+                                    {"{3}", person.PassportNo},
+                                    {"{3'}", person.PassportValidUntil},
+                                    {"{4}", person.BornAt},
+                                    {"{5}", person.Citizenship},
+                                    {"{5'}", person.ResidentPermitNo},
+                                    {"{5''}", person.RPValidUntil},
+                                    {"{6}", person.CompanyName},
+                                    {"{7}", person.ONRC},
+                                    {"{8}", person.CUI},
+                                    {"{9}", person.FirmAddress},
+                                    {"{10}", person.RepresentsByName},
+                                    {"{10'}", person.RepresentsBySurname},
+                                    {"{10''}", person.Passport_IDNumber},
+                                    {"{10'''}", person.PassportIDValidUntil},
+                                    {"{11}", person.Profession},
+                                    {"{12}", person.Salary},
+                                    {"{13}", person.PlacetoWork},
+                                    {"{14}", person.AccomodationAddress},
+                                    {"{15}", person.CORNumber},
+                                    {"{16}", person.Orgamigram},
+                                    {"{17}", person.OccupiedByRomanianCitizen},
+                                    {"{18}", person.OccupiedByImmigrationCitizen},
+                                    {"{19}", person.JobsVacancies},
+                                    {"{20}", person.AJOFMDate},
+                                    {"{21}", person.AJOFMCity},
+                                    {"{22}", person.NumberOfAJOFMPaper},
+                                    {"{23}", person.DateofAJOFMPaper},
+                                };
 
                             foreach (var paragraph in paragraphs)
                             {
@@ -176,64 +174,16 @@ namespace Letter_App
                             }
 
                             count++;
-                        }
+                        } //    end new document
+
                     }
-
-                    MessageBox.Show($"Word file saved successfully.\n\nTotal Files Saved: {count}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            
-
-
-        }
-
-
-        //----------------------------------------SAVE AS WORD--------------------------------------------------------------------------
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            int count = 0;
-
-            List<Person> selectedPersons = new List<Person>();
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                DataGridViewCheckBoxCell checkBox = row.Cells["Select"] as DataGridViewCheckBoxCell;
-                if (checkBox.Value != null && (bool)checkBox.Value)
-                {
-                    // If the checkbox is checked, include this Person object in the selection
-                    Person person = (Person)row.DataBoundItem;
-                    selectedPersons.Add(person);
-                }
-            }
-
-
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Word Documents|*.docx";
-            openFileDialog.Title = "Select a Word Document";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string selectedFilePath = openFileDialog.FileName;
-
-                // Ask the user for the destination folder
-                FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-                folderDialog.Description = "Select a folder to save the Word files";
-
-                if (folderDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string selectedFolder = folderDialog.SelectedPath;
-                    count = 0;
-
-                    // Open the Word document outside the loop
-                    using (var wordDocument = WordprocessingDocument.Open(selectedFilePath, false))
+                    else
                     {
-
                         foreach (Person person in selectedPersons)
                         {
                             // Create a new Word document based on the original template
                             string savePath = Path.Combine(selectedFolder, $"{person.Name} {person.SurName} ({person.PassportNo}).docx");
-                            File.Copy(selectedFilePath, savePath);
+                            File.Copy(templatepath, savePath);
 
                             // Open the new document for modification
                             using (var newWordDocument = WordprocessingDocument.Open(savePath, true))
@@ -288,11 +238,192 @@ namespace Letter_App
                                 }
 
                                 count++;
-                            }
-                        }
+                            } //    end new document
 
-                        MessageBox.Show($"Word file saved successfully.\n\nTotal Files Saved: {count}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }   // end foreach loop
+
+                    }   // end else
+
+                    MessageBox.Show($"Word file saved successfully.\n\nTotal Files Saved: {count}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            
+
+
+        }
+
+
+        //----------------------------------------SAVE AS WORD--------------------------------------------------------------------------
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+
+            List<Person> selectedPersons = new List<Person>();
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                DataGridViewCheckBoxCell checkBox = row.Cells["Select"] as DataGridViewCheckBoxCell;
+                if (checkBox.Value != null && (bool)checkBox.Value)
+                {
+                    // If the checkbox is checked, include this Person object in the selection
+                    Person person = (Person)row.DataBoundItem;
+                    selectedPersons.Add(person);
+                }
+            }
+
+
+            if (templatepath == string.Empty)
+            {
+                MessageBox.Show($"Please Select a template first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            // Ask the user for the destination folder
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            folderDialog.Description = "Select a folder to save the Word files";
+
+            if (folderDialog.ShowDialog() == DialogResult.OK)
+            {
+                string selectedFolder = folderDialog.SelectedPath;
+                count = 0;
+
+                // Open the Word document outside the loop
+                using (var wordDocument = WordprocessingDocument.Open(templatepath, false))
+                {
+                    if (checkBox1.Checked)
+                    {
+                        // Create a new Word document based on the original template
+                        string savePath = Path.Combine(selectedFolder, $"{templateName} {DateTime.Now} ({selectedPersons.Count} people).docx");
+                        File.Copy(templatepath, savePath);
+
+                        // Open the new document for modification
+                        using (var newWordDocument = WordprocessingDocument.Open(savePath, true))
+                        {
+                            // Find and replace the content in the document
+                            var body = newWordDocument.MainDocumentPart.Document.Body;
+                            var paragraphs = body.Descendants<Paragraph>().ToList();
+
+                            var person = persons.First();
+
+                            var placeholderValues = new Dictionary<string, string>
+                                {
+                                    {"{1}", string.Join(" ", persons.Select(pers => $"{pers.Name} {pers.SurName}, "))},
+                                    {"{2}", string.Empty},
+                                    {"{3}", person.PassportNo},
+                                    {"{3'}", person.PassportValidUntil},
+                                    {"{4}", person.BornAt},
+                                    {"{5}", person.Citizenship},
+                                    {"{5'}", person.ResidentPermitNo},
+                                    {"{5''}", person.RPValidUntil},
+                                    {"{6}", person.CompanyName},
+                                    {"{7}", person.ONRC},
+                                    {"{8}", person.CUI},
+                                    {"{9}", person.FirmAddress},
+                                    {"{10}", person.RepresentsByName},
+                                    {"{10'}", person.RepresentsBySurname},
+                                    {"{10''}", person.Passport_IDNumber},
+                                    {"{10'''}", person.PassportIDValidUntil},
+                                    {"{11}", person.Profession},
+                                    {"{12}", person.Salary},
+                                    {"{13}", person.PlacetoWork},
+                                    {"{14}", person.AccomodationAddress},
+                                    {"{15}", person.CORNumber},
+                                    {"{16}", person.Orgamigram},
+                                    {"{17}", person.OccupiedByRomanianCitizen},
+                                    {"{18}", person.OccupiedByImmigrationCitizen},
+                                    {"{19}", person.JobsVacancies},
+                                    {"{20}", person.AJOFMDate},
+                                    {"{21}", person.AJOFMCity},
+                                    {"{22}", person.NumberOfAJOFMPaper},
+                                    {"{23}", person.DateofAJOFMPaper},
+                                };
+
+                            foreach (var paragraph in paragraphs)
+                            {
+                                foreach (var text in paragraph.Descendants<Text>())
+                                {
+                                    // Replace placeholders with specific details
+                                    foreach (var placeholder in placeholderValues)
+                                    {
+                                        text.Text = text.Text.Replace(placeholder.Key, placeholder.Value);
+                                    }
+                                }
+                            }
+
+                            count++;
+                        } //    end new document
+
                     }
+                    else
+                    {
+                        foreach (Person person in selectedPersons)
+                        {
+                            // Create a new Word document based on the original template
+                            string savePath = Path.Combine(selectedFolder, $"{person.Name} {person.SurName} ({person.PassportNo}).docx");
+                            File.Copy(templatepath, savePath);
+
+                            // Open the new document for modification
+                            using (var newWordDocument = WordprocessingDocument.Open(savePath, true))
+                            {
+                                // Find and replace the content in the document
+                                var body = newWordDocument.MainDocumentPart.Document.Body;
+                                var paragraphs = body.Descendants<Paragraph>().ToList();
+
+                                var placeholderValues = new Dictionary<string, string>
+                                {
+                                    {"{1}", person.Name},
+                                    {"{2}", person.SurName},
+                                    {"{3}", person.PassportNo},
+                                    {"{3'}", person.PassportValidUntil},
+                                    {"{4}", person.BornAt},
+                                    {"{5}", person.Citizenship},
+                                    {"{5'}", person.ResidentPermitNo},
+                                    {"{5''}", person.RPValidUntil},
+                                    {"{6}", person.CompanyName},
+                                    {"{7}", person.ONRC},
+                                    {"{8}", person.CUI},
+                                    {"{9}", person.FirmAddress},
+                                    {"{10}", person.RepresentsByName},
+                                    {"{10'}", person.RepresentsBySurname},
+                                    {"{10''}", person.Passport_IDNumber},
+                                    {"{10'''}", person.PassportIDValidUntil},
+                                    {"{11}", person.Profession},
+                                    {"{12}", person.Salary},
+                                    {"{13}", person.PlacetoWork},
+                                    {"{14}", person.AccomodationAddress},
+                                    {"{15}", person.CORNumber},
+                                    {"{16}", person.Orgamigram},
+                                    {"{17}", person.OccupiedByRomanianCitizen},
+                                    {"{18}", person.OccupiedByImmigrationCitizen},
+                                    {"{19}", person.JobsVacancies},
+                                    {"{20}", person.AJOFMDate},
+                                    {"{21}", person.AJOFMCity},
+                                    {"{22}", person.NumberOfAJOFMPaper},
+                                    {"{23}", person.DateofAJOFMPaper},
+                                };
+
+                                foreach (var paragraph in paragraphs)
+                                {
+                                    foreach (var text in paragraph.Descendants<Text>())
+                                    {
+                                        // Replace placeholders with specific details
+                                        foreach (var placeholder in placeholderValues)
+                                        {
+                                            text.Text = text.Text.Replace(placeholder.Key, placeholder.Value);
+                                        }
+                                    }
+                                }
+
+                                count++;
+                            } //    end new document
+
+                        }   // end foreach loop
+
+                    }   // end else
+
+                    MessageBox.Show($"Word file saved successfully.\n\nTotal Files Saved: {count}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

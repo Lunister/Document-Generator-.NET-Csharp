@@ -117,7 +117,7 @@ namespace Letter_App
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(484, 73);
+            label3.Location = new Point(589, 57);
             label3.Name = "label3";
             label3.Size = new Size(75, 21);
             label3.TabIndex = 12;
@@ -127,7 +127,7 @@ namespace Letter_App
             // 
             checkBox1.AutoSize = true;
             checkBox1.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBox1.Location = new Point(375, 97);
+            checkBox1.Location = new Point(470, 97);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(103, 29);
             checkBox1.TabIndex = 14;
@@ -149,7 +149,7 @@ namespace Letter_App
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(616, 105);
+            label2.Location = new Point(670, 57);
             label2.Name = "label2";
             label2.Size = new Size(48, 21);
             label2.TabIndex = 16;
@@ -158,7 +158,7 @@ namespace Letter_App
             // 
             // button4
             // 
-            button4.Location = new Point(670, 103);
+            button4.Location = new Point(589, 98);
             button4.Name = "button4";
             button4.Size = new Size(79, 29);
             button4.TabIndex = 17;
