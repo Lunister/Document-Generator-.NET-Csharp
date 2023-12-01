@@ -119,11 +119,11 @@ namespace Letter_App
             newPerson.Name = textBox1.Text;
             newPerson.SurName = textBox2.Text;
             newPerson.PassportNo = textBox3.Text;
-            newPerson.PassportValidUntil = dateTimePicker1.Text.ToString();
-            newPerson.BornAt = dateTimePicker2.Text.ToString();
+            newPerson.PassportValidUntil = dateTimePicker1.Value.ToString("dd.MM.yyyy");
+            newPerson.BornAt = dateTimePicker2.Value.ToString("dd.MM.yyyy");
             newPerson.Citizenship = textBox4.Text;
             newPerson.ResidentPermitNo = textBox5.Text;
-            newPerson.RPValidUntil = dateTimePicker3.Text.ToString();
+            newPerson.RPValidUntil = dateTimePicker3.Value.ToString("dd.MM.yyyy");
             newPerson.CompanyName = textBox10.Text;
             newPerson.ONRC = textBox9.Text;
             newPerson.CUI = textBox8.Text;
@@ -131,7 +131,7 @@ namespace Letter_App
             newPerson.RepresentsByName = textBox7.Text;
             newPerson.RepresentsBySurname = textBox6.Text;
             newPerson.Passport_IDNumber = textBox12.Text;
-            newPerson.PassportIDValidUntil = dateTimePicker6.Text;
+            newPerson.PassportIDValidUntil = dateTimePicker6.Value.ToString("dd.MM.yyyy");
             newPerson.Profession = textBox16.Text;
             newPerson.Salary = textBox15.Text;
             newPerson.PlacetoWork = textBox18.Text;
@@ -141,10 +141,10 @@ namespace Letter_App
             newPerson.OccupiedByRomanianCitizen = textBox22.Text;
             newPerson.OccupiedByImmigrationCitizen = textBox21.Text;
             newPerson.JobsVacancies = textBox20.Text;
-            newPerson.AJOFMDate = dateTimePicker5.Text;
+            newPerson.AJOFMDate = dateTimePicker5.Value.ToString("dd.MM.yyyy");
             newPerson.AJOFMCity = textBox24.Text;
             newPerson.NumberOfAJOFMPaper = textBox23.Text;
-            newPerson.DateofAJOFMPaper = dateTimePicker4.Text;
+            newPerson.DateofAJOFMPaper = dateTimePicker4.Value.ToString("dd.MM.yyyy");
 
             persons.Add(newPerson);
 

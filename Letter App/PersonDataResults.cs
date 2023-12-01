@@ -1,5 +1,4 @@
-﻿using iTextSharp.text.pdf;
-using System.Data;
+﻿using System.Data;
 using System.Text.RegularExpressions;
 using Xceed.Words.NET;
 using DocumentFormat.OpenXml.Packaging;
@@ -320,7 +319,7 @@ namespace Letter_App
                     if (checkBox1.Checked)
                     {
                         // Create a new Word document based on the original template
-                        string savePath = Path.Combine(selectedFolder, $"{templateName} {DateFormatValues.Date} ({selectedPersons.Count} people).docx");
+                        string savePath = Path.Combine(selectedFolder, $"{templateName} {DateTime.Now.ToString("dd-MM-yyyy")} ({selectedPersons.Count} people).docx");
                         File.Copy(templatepath, savePath);
 
                         // Open the new document for modification
@@ -509,7 +508,7 @@ namespace Letter_App
                     if (checkBox1.Checked)
                     {
                         // Create a new Word document based on the original template
-                        string savePath = Path.Combine(selectedFolder, $"{templateName} {DateTime.Now} ({selectedPersons.Count} people).docx");
+                        string savePath = Path.Combine(selectedFolder, $"{templateName} {DateTime.Now.ToString("dd-MM-yyyy")} ({selectedPersons.Count} people).docx");
                         File.Copy(templatepath, savePath);
 
                         // Open the new document for modification
